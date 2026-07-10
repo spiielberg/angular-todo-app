@@ -1,0 +1,108 @@
+.todo-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 6px;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  user-select: none;
+  transition: border-color 0.15s, background-color 0.15s;
+}
+
+.todo-item:hover,
+.todo-item[data-active='true'] {
+  border-color: var(--accent);
+}
+
+.todo-item:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+/* Circle that plays the checkbox role: fills in when the item is selected */
+.todo-item__check {
+  display: grid;
+  place-items: center;
+  width: 22px;
+  height: 22px;
+  flex-shrink: 0;
+  border: 2px solid var(--border-strong);
+  border-radius: 50%;
+  color: transparent;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.todo-item[aria-selected='true'] .todo-item__check {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.todo-item__title {
+  flex: 1;
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+
+.todo-item[aria-selected='true'] .todo-item__title {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+
+.todo-item__delete {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  flex-shrink: 0;
+  padding: 0;
+  border: 0;
+  border-radius: var(--radius-sm);
+  background: transparent;
+  color: var(--text-muted);
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.15s, background-color 0.15s, color 0.15s;
+}
+
+.todo-item:hover .todo-item__delete,
+.todo-item:focus-within .todo-item__delete {
+  opacity: 1;
+}
+
+/* Touch screens have no hover: keep the button always visible */
+@media (hover: none) {
+  .todo-item__delete {
+    opacity: 1;
+  }
+}
+
+.todo-item__delete:hover {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.empty {
+  padding: 28px 16px;
+  text-align: center;
+}
+
+.empty__title {
+  margin: 0;
+  font-weight: 600;
+}
+
+.empty__hint {
+  margin: 4px 0 0;
+  color: var(--text-muted);
+  font-size: 0.85rem;
+}

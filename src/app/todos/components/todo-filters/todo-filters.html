@@ -1,0 +1,14 @@
+<ul
+  ngListbox
+  class="filters"
+  orientation="horizontal"
+  aria-label="Filter tasks"
+  [value]="selected()"
+  (valueChange)="onSelectionChange($event)"
+>
+  @for (filter of filters; track filter.value) {
+    <li ngOption class="filters__option" [value]="filter.value" [label]="filter.label">
+      {{ filter.label }}
+    </li>
+  }
+</ul>

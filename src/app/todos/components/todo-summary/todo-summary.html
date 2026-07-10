@@ -1,0 +1,6 @@
+<footer class="summary">
+  <span aria-live="polite">{{ remaining() }}</span>
+  @if (store.totalCount() > 0) {
+    <span>{{ store.completedCount() }} of {{ store.totalCount() }} completed</span>
+  }
+</footer>

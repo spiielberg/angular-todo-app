@@ -1,0 +1,13 @@
+<form class="todo-form" (submit)="submit($event)">
+  <input
+    class="todo-form__input"
+    type="text"
+    name="title"
+    placeholder="What needs to be done?"
+    aria-label="New task"
+    autocomplete="off"
+    [value]="title()"
+    (input)="updateTitle($event)"
+  />
+  <button class="todo-form__button" type="submit" [disabled]="!title().trim()">Add</button>
+</form>

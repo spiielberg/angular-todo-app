@@ -1,0 +1,58 @@
+@if (store.totalCount() === 0) {
+  <div class="empty">
+    <p class="empty__title">Nothing here yet</p>
+    <p class="empty__hint">Add your first task above.</p>
+  </div>
+} @else if (store.visibleTodos().length === 0) {
+  <div class="empty">
+    <p class="empty__title">Nothing matches this filter</p>
+    <p class="empty__hint">Switch filters to see your other tasks.</p>
+  </div>
+} @else {
+  <ul
+    ngListbox
+    class="todo-list"
+    aria-label="Task list. Space toggles completion; Delete removes the focused task"
+    selectionMode="explicit"
+    [multi]="true"
+    [value]="store.completedVisibleIds()"
+    (valueChange)="onSelectionChange($event)"
+  >
+    @for (todo of store.visibleTodos(); track todo.id) {
+      <li
+        ngOption
+        class="todo-item"
+        [value]="todo.id"
+        [label]="todo.title"
+        (keydown.delete)="removeByKeyboard($event, todo.id)"
+        (keydown.backspace)="removeByKeyboard($event, todo.id)"
+      >
+        <span class="todo-item__check" aria-hidden="true">
+          <svg viewBox="0 0 16 16" width="12" height="12">
+            <path
+              d="M13.2 4.6 6.5 11.3 2.8 7.6"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.4"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+        <span class="todo-item__title">{{ todo.title }}</span>
+        <button
+          class="todo-item__delete"
+          type="button"
+          tabindex="-1"
+          [attr.aria-label]="'Delete task: ' + todo.title"
+          (pointerdown)="$event.stopPropagation()"
+          (click)="removeByPointer($event, todo.id)"
+        >
+          <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true">
+            <path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+          </svg>
+        </button>
+      </li>
+    }
+  </ul>
+}

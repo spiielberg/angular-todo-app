@@ -1,0 +1,22 @@
+<div ngToolbar class="actions" aria-label="Bulk actions">
+  <button
+    ngToolbarWidget
+    value="complete-all"
+    type="button"
+    class="actions__button"
+    [disabled]="store.activeCount() === 0"
+    (click)="store.completeAll()"
+  >
+    Complete all
+  </button>
+  <button
+    ngToolbarWidget
+    value="clear-completed"
+    type="button"
+    class="actions__button actions__button--danger"
+    [disabled]="!store.hasCompleted()"
+    (click)="store.clearCompleted()"
+  >
+    Clear completed
+  </button>
+</div>

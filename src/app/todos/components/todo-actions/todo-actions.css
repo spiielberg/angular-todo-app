@@ -1,0 +1,33 @@
+.actions {
+  display: inline-flex;
+  gap: 8px;
+}
+
+.actions__button {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  background: var(--surface);
+  color: var(--text);
+  font-size: 0.8rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+}
+
+.actions__button:hover:not(:disabled):not([aria-disabled='true']) {
+  border-color: var(--accent);
+  color: var(--accent-strong);
+}
+
+.actions__button--danger:hover:not(:disabled):not([aria-disabled='true']) {
+  border-color: var(--danger);
+  color: var(--danger);
+  background: var(--danger-soft);
+}
+
+.actions__button:disabled,
+.actions__button[aria-disabled='true'] {
+  opacity: 0.45;
+  cursor: default;
+}
