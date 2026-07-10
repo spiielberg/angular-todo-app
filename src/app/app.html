@@ -1,0 +1,18 @@
+<main class="app">
+  <header class="app__header">
+    <h1 class="app__title">My Tasks</h1>
+    <p class="app__subtitle">A simple todo list to organize your day</p>
+  </header>
+
+  <section class="app__card" aria-label="Task manager">
+    <app-todo-form />
+
+    <div class="app__controls">
+      <app-todo-filters />
+      <app-todo-actions />
+    </div>
+
+    <app-todo-list />
+    <app-todo-summary />
+  </section>
+</main>
