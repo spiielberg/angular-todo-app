@@ -28,7 +28,9 @@
   outline-offset: 1px;
 }
 
-/* Circle that plays the checkbox role: fills in when the item is selected */
+/* Circle that plays the checkbox role: fills in when the item is selected.
+   pointer-events: none lets clicks fall through to the option <li> — the
+   listbox ignores events whose target is the inner SVG (not an HTMLElement). */
 .todo-item__check {
   display: grid;
   place-items: center;
@@ -38,6 +40,7 @@
   border: 2px solid var(--border-strong);
   border-radius: 50%;
   color: transparent;
+  pointer-events: none;
   transition: background-color 0.15s, border-color 0.15s, color 0.15s;
 }
 
