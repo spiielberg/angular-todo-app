@@ -11,6 +11,10 @@
   --border-strong: #c9cde0;
   --danger: #d64550;
   --danger-soft: #fdeeef;
+  --info: #2f6fdb;
+  --info-soft: #e8f0fc;
+  --warning: #a16207;
+  --warning-soft: #fdf3d8;
   --radius-lg: 18px;
   --radius-md: 12px;
   --radius-sm: 9px;
@@ -27,7 +31,12 @@ html {
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+  font-family:
+    system-ui,
+    -apple-system,
+    'Segoe UI',
+    Roboto,
+    sans-serif;
   background: linear-gradient(180deg, #f7f8fd 0%, var(--bg) 100%);
   color: var(--text);
   min-height: 100vh;

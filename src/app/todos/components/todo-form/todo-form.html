@@ -1,13 +1,47 @@
 <form class="todo-form" (submit)="submit($event)">
-  <input
-    class="todo-form__input"
-    type="text"
-    name="title"
-    placeholder="What needs to be done?"
-    aria-label="New task"
-    autocomplete="off"
-    [value]="title()"
-    (input)="updateTitle($event)"
-  />
-  <button class="todo-form__button" type="submit" [disabled]="!title().trim()">Add</button>
+  <div class="todo-form__main">
+    <input
+      class="todo-form__input"
+      type="text"
+      name="title"
+      placeholder="What needs to be done?"
+      aria-label="New task"
+      autocomplete="off"
+      [value]="title()"
+      (input)="updateTitle($event)"
+    />
+    <button class="todo-form__button" type="submit" [disabled]="!title().trim()">Add</button>
+  </div>
+  <div class="todo-form__options">
+    <select
+      class="todo-form__field"
+      name="priority"
+      aria-label="Priority"
+      [value]="priority()"
+      (change)="updatePriority($event)"
+    >
+      <option value="">Priority</option>
+      @for (option of priorities; track option.value) {
+        <option [value]="option.value">{{ option.label }}</option>
+      }
+    </select>
+    <input
+      class="todo-form__field"
+      type="date"
+      name="dueDate"
+      aria-label="Due date"
+      [value]="dueDate()"
+      (input)="updateDueDate($event)"
+    />
+    <input
+      class="todo-form__field todo-form__tags"
+      type="text"
+      name="tags"
+      placeholder="Tags: work, personal"
+      aria-label="Tags: work, personal"
+      autocomplete="off"
+      [value]="tags()"
+      (input)="updateTags($event)"
+    />
+  </div>
 </form>

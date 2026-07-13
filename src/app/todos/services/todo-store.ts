@@ -1,7 +1,7 @@
 import { Injectable, computed, effect, inject, signal } from '@angular/core';
 
 import { BrowserStorage } from '../../shared/services/browser-storage';
-import { Todo, TodoFilter } from '../types/todo';
+import { Todo, TodoDraft, TodoFilter } from '../types/todo';
 import { createTodo, filterTodos, isTodoArray } from '../utils/todo-utils';
 
 const STORAGE_KEY = 'angular-todo-app.todos';
@@ -40,8 +40,8 @@ export class TodoStore {
     effect(() => this.storage.write(STORAGE_KEY, this._todos()));
   }
 
-  add(title: string): void {
-    const todo = createTodo(title);
+  add(draft: TodoDraft): void {
+    const todo = createTodo(draft);
     if (!todo) return;
 
     this._todos.update((todos) => [todo, ...todos]);

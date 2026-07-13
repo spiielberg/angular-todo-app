@@ -15,7 +15,9 @@
   border-radius: var(--radius-md);
   cursor: pointer;
   user-select: none;
-  transition: border-color 0.15s, background-color 0.15s;
+  transition:
+    border-color 0.15s,
+    background-color 0.15s;
 }
 
 .todo-item:hover,
@@ -41,7 +43,10 @@
   border-radius: 50%;
   color: transparent;
   pointer-events: none;
-  transition: background-color 0.15s, border-color 0.15s, color 0.15s;
+  transition:
+    background-color 0.15s,
+    border-color 0.15s,
+    color 0.15s;
 }
 
 .todo-item[aria-selected='true'] .todo-item__check {
@@ -50,15 +55,79 @@
   color: #fff;
 }
 
-.todo-item__title {
+.todo-item__body {
   flex: 1;
   min-width: 0;
+  display: grid;
+  gap: 7px;
+}
+
+.todo-item__title {
   overflow-wrap: anywhere;
 }
 
 .todo-item[aria-selected='true'] .todo-item__title {
   color: var(--text-muted);
   text-decoration: line-through;
+}
+
+.todo-item__pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 2px 9px;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+
+.pill__icon {
+  flex-shrink: 0;
+}
+
+.pill--priority {
+  text-transform: capitalize;
+}
+
+.pill--low {
+  background: var(--info-soft);
+  color: var(--info);
+}
+
+.pill--medium {
+  background: var(--warning-soft);
+  color: var(--warning);
+}
+
+.pill--high {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.pill--date {
+  background: var(--bg);
+  color: var(--text-muted);
+}
+
+.pill--date.pill--overdue {
+  background: var(--danger-soft);
+  color: var(--danger);
+}
+
+.pill--tag {
+  background: var(--accent-soft);
+  color: var(--accent);
+}
+
+.todo-item[aria-selected='true'] .pill {
+  opacity: 0.55;
 }
 
 .todo-item__delete {
@@ -74,7 +143,10 @@
   color: var(--text-muted);
   cursor: pointer;
   opacity: 0;
-  transition: opacity 0.15s, background-color 0.15s, color 0.15s;
+  transition:
+    opacity 0.15s,
+    background-color 0.15s,
+    color 0.15s;
 }
 
 .todo-item:hover .todo-item__delete,

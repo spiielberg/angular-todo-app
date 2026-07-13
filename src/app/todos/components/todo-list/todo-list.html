@@ -39,7 +39,78 @@
             />
           </svg>
         </span>
-        <span class="todo-item__title">{{ todo.title }}</span>
+        <span class="todo-item__body">
+          <span class="todo-item__title">{{ todo.title }}</span>
+          @if (todo.priority || todo.dueDate || todo.tags?.length) {
+            <span class="todo-item__pills">
+              @if (todo.priority) {
+                <span class="pill pill--priority" [class]="'pill--' + todo.priority">
+                  <svg
+                    class="pill__icon"
+                    viewBox="0 0 16 16"
+                    width="10"
+                    height="10"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M4 14.5v-12M4 3h7.5l-2 2.75 2 2.75H4"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                  {{ todo.priority }}
+                </span>
+              }
+              @if (todo.dueDate) {
+                <span class="pill pill--date" [class.pill--overdue]="isOverdue(todo.dueDate)">
+                  <svg
+                    class="pill__icon"
+                    viewBox="0 0 16 16"
+                    width="10"
+                    height="10"
+                    aria-hidden="true"
+                  >
+                    <g
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <rect x="2.25" y="3.25" width="11.5" height="10.5" rx="1.8" />
+                      <path d="M2.25 6.75h11.5M5.5 1.5v2.5M10.5 1.5v2.5" />
+                    </g>
+                  </svg>
+                  {{ formatDueDate(todo.dueDate) }}
+                </span>
+              }
+              @for (tag of todo.tags; track tag) {
+                <span class="pill pill--tag">
+                  <svg
+                    class="pill__icon"
+                    viewBox="0 0 16 16"
+                    width="10"
+                    height="10"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M8.35 2.25h4.4a1 1 0 0 1 1 1v4.4a1 1 0 0 1-.3.7l-5.6 5.6a1 1 0 0 1-1.4 0l-4.4-4.4a1 1 0 0 1 0-1.4l5.6-5.6a1 1 0 0 1 .7-.3Z"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="1.6"
+                      stroke-linejoin="round"
+                    />
+                    <circle cx="10.6" cy="5.4" r="1" fill="currentColor" />
+                  </svg>
+                  {{ tag }}
+                </span>
+              }
+            </span>
+          }
+        </span>
         <button
           class="todo-item__delete"
           type="button"
@@ -49,7 +120,12 @@
           (click)="removeByPointer($event, todo.id)"
         >
           <svg viewBox="0 0 16 16" width="12" height="12" aria-hidden="true">
-            <path d="m4 4 8 8m0-8-8 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+            <path
+              d="m4 4 8 8m0-8-8 8"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+            />
           </svg>
         </button>
       </li>

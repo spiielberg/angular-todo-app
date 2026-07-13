@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Listbox, Option } from '@angular/aria/listbox';
 
 import { TodoStore } from '../../services/todo-store';
+import { formatDueDate, isOverdue } from '../../utils/todo-utils';
 
 /**
  * Task list built on the @angular/aria multi-select Listbox:
@@ -17,6 +18,9 @@ import { TodoStore } from '../../services/todo-store';
 })
 export class TodoList {
   protected readonly store = inject(TodoStore);
+
+  protected readonly isOverdue = isOverdue;
+  protected readonly formatDueDate = formatDueDate;
 
   protected onSelectionChange(selectedIds: readonly string[]): void {
     this.store.syncVisibleCompletion(selectedIds);
