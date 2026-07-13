@@ -1,5 +1,7 @@
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Listbox, Option } from '@angular/aria/listbox';
+import { NgIcon, provideIcons } from '@ng-icons/core';
+import { lucideCalendar, lucideCheck, lucideFlag, lucideTag, lucideX } from '@ng-icons/lucide';
 
 import { TodoStore } from '../../services/todo-store';
 import { formatDueDate, isOverdue } from '../../utils/todo-utils';
@@ -11,7 +13,8 @@ import { formatDueDate, isOverdue } from '../../utils/todo-utils';
  */
 @Component({
   selector: 'app-todo-list',
-  imports: [Listbox, Option],
+  imports: [Listbox, Option, NgIcon],
+  providers: [provideIcons({ lucideCalendar, lucideCheck, lucideFlag, lucideTag, lucideX })],
   templateUrl: './todo-list.html',
   styleUrl: './todo-list.css',
   changeDetection: ChangeDetectionStrategy.OnPush,

@@ -46,6 +46,12 @@ button {
   font: inherit;
 }
 
+/* ng-icon sizes its host box, but the inner svg is inline and sits on the
+   text baseline, overflowing below the host — blockify it to center. */
+ng-icon svg {
+  display: block;
+}
+
 :focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
