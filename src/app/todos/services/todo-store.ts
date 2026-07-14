@@ -2,7 +2,7 @@ import { Injectable, computed, effect, inject, signal } from '@angular/core';
 
 import { BrowserStorage } from '../../shared/services/browser-storage';
 import { Todo, TodoDraft, TodoFilter } from '../types/todo';
-import { createTodo, filterTodos, isTodoArray } from '../utils/todo-utils';
+import { createTodo, filterTodos, isTodoArray, sortCompletedLast } from '../utils/todo-utils';
 
 const STORAGE_KEY = 'angular-todo-app.todos';
 
@@ -23,7 +23,9 @@ export class TodoStore {
   readonly filter = this._filter.asReadonly();
 
   // Derived values: recomputed automatically when state changes.
-  readonly visibleTodos = computed(() => filterTodos(this._todos(), this._filter()));
+  readonly visibleTodos = computed(() =>
+    sortCompletedLast(filterTodos(this._todos(), this._filter())),
+  );
   readonly totalCount = computed(() => this._todos().length);
   readonly completedCount = computed(() => this._todos().filter((todo) => todo.completed).length);
   readonly activeCount = computed(() => this.totalCount() - this.completedCount());

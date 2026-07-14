@@ -1,4 +1,4 @@
-import { Todo, TodoDraft, TodoFilter, TODO_PRIORITIES } from '../types/todo';
+import { Todo, TODO_PRIORITIES, TodoDraft, TodoFilter } from '../types/todo';
 
 /** Creates a task from the form draft; returns null when the title is empty. */
 export function createTodo(draft: TodoDraft): Todo | null {
@@ -58,6 +58,11 @@ export function filterTodos(todos: readonly Todo[], filter: TodoFilter): Todo[] 
     default:
       return [...todos];
   }
+}
+
+/** Active tasks first, completed at the end; keeps insertion order within each group. */
+export function sortCompletedLast(todos: readonly Todo[]): Todo[] {
+  return [...todos].sort((a, b) => Number(a.completed) - Number(b.completed));
 }
 
 /** Validates data coming from localStorage, which may be missing or corrupted. */
